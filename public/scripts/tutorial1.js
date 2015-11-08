@@ -52,19 +52,19 @@ var CommentForm = React.createClass({
     e.preventDefault();
     console.log("refs", this.refs);
     var author = this.refs.author.value.trim();
-    var comment = this.refs.comment.value.trim();
-    if(!author || !comment) {
+    var text = this.refs.text.value.trim();
+    if(!author || !text) {
       return;
     }
-    this.refs.author = '';
-    this.refs.comment = '';
+    this.refs.author.value = '';
+    this.refs.text.value = '';
     return;
   },
   render: function(){
     return (
       <form className="commentForm" onSubmit={this.handleSubmit}>
         <input type="text" placeholder="Your name" ref="author"/ >
-        <input type="text" placeholder="Your comment" ref="comment"/ >
+        <input type="text" placeholder="Your comment" ref="text"/ >
         <input type="submit" value="Post" />
       </form>
     );
