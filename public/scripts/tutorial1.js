@@ -13,6 +13,9 @@ var CommentBox = React.createClass({
     });
   },
   handleCommentSubmit: function(comment) {
+    var comments = this.state.data;
+    var newComments = comments.concat([comment]);
+    this.setState({data: newComments});
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -64,7 +67,6 @@ var CommentList = React.createClass({
 var CommentForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
-    console.log("refs", this.refs);
     var author = this.refs.author.value.trim();
     var text = this.refs.text.value.trim();
     if(!author || !text) {
@@ -104,6 +106,6 @@ var Comment = React.createClass({
 });
 
 ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={1000}/>,
+  <CommentBox url="/api/comments" pollInterval={10000}/>,
   document.getElementById('content')
 );
